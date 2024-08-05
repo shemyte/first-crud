@@ -1,4 +1,4 @@
-defmodule SuperStoreWeb.PageLive do
+defmodule SuperStoreWeb.ProductLive.New do
   use SuperStoreWeb, :live_view
   import SuperStoreWeb.CoreComponents
   alias SuperStore.Catalog.Product
@@ -39,6 +39,11 @@ defmodule SuperStoreWeb.PageLive do
 
   def render(assigns) do
     ~H"""
+    <.header>
+      New Product
+      <:subtitle>Use this form to create product records in your database</:subtitle>
+    </.header>
+
     <div class="bg-gray-100">
       <.form
         for={@form}
@@ -60,6 +65,8 @@ defmodule SuperStoreWeb.PageLive do
         <.button class="submit">Send</.button>
       </.form>
     </div>
+
+    <.back navigate={~p"/"}>Back to products</.back>
     """
   end
 end

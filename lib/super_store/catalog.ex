@@ -6,4 +6,9 @@ defmodule SuperStore.Catalog do
     Product.changeset(%Product{}, attrs)
     |> Repo.insert()
   end
+
+  def list_products() do
+    Product
+    |> Repo.all()
+  end
 end
