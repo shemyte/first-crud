@@ -2,6 +2,7 @@ defmodule SuperStoreWeb.PageLive do
   use SuperStoreWeb, :live_view
   import SuperStoreWeb.CoreComponents
   alias SuperStore.Catalog.Product
+  alias SuperStore.Catalog
 
   def mount(_params, _session, socket) do
     form =
@@ -21,7 +22,18 @@ defmodule SuperStoreWeb.PageLive do
   end
 
   def handle_event("create_product", %{"product" => product_params}, socket) do
-    IO.inspect({"Form Submitted!!", product_params})
+    socket =
+    case Catalog.create_product(product_params) do
+      {:ok, %Product{} = product} ->
+        put_flash(socket, :info, "Product ID #{product.id} created!")
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        form = to_form(changeset)
+
+        socket
+        |> assign(form: form)
+        |> put_flash(:error, "Invalid Product!")
+    end
     {:noreply, socket}
   end
 
