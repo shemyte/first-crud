@@ -11,4 +11,6 @@ defmodule SuperStore.Catalog do
     Product
     |> Repo.all()
   end
+
+  def get_product!(id), do: Repo.get!(Product, id)
 end
