@@ -13,4 +13,8 @@ defmodule SuperStore.Catalog do
   end
 
   def get_product!(id), do: Repo.get!(Product, id)
+
+  def delete_product(%Product{} = product) do
+    Repo.delete(product)
+  end
 end
