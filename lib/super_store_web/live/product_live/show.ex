@@ -15,7 +15,7 @@ defmodule SuperStoreWeb.ProductLive.Show do
       <:subtitle>This is a product record from your database.</:subtitle>
       <:actions>
         <.link patch={~p"/products/#{@product}/edit"}>
-          <.button>Edit Event</.button>
+          <.button>Edit Product</.button>
         </.link>
       </:actions>
     </.header>

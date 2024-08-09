@@ -3,6 +3,7 @@ defmodule SuperStoreWeb.ProductLive.New do
   import SuperStoreWeb.CoreComponents
   alias SuperStore.Catalog.Product
   alias SuperStore.Catalog
+  alias SuperStoreWeb.ProductLive.FormComponent
 
   def mount(_params, _session, socket) do
     form =
@@ -44,27 +45,13 @@ defmodule SuperStoreWeb.ProductLive.New do
       <:subtitle>Use this form to create product records in your database</:subtitle>
     </.header>
 
-    <div class="bg-gray-100">
-      <.form
-        for={@form}
-        phx-change="validate_product"
-        phx-submit="create_product"
-        class="flex flex-col max-w-96 mx-auto bg-gray-100 p-24"
+    <FormComponent.render
+      form={@form}
+      phx-change="validate_product"
+      phx-submit="create_product"
       >
-        <h1>Create Product</h1>
-        <.input
-          field={@form[:name]}
-          placeholder="Name"
-        />
-
-        <.input
-          field={@form[:description]}
-          placeholder="Description"
-        />
-
-        <.button class="submit">Send</.button>
-      </.form>
-    </div>
+        <h1>Create a product</h1>
+    </FormComponent.render>
 
     <.back navigate={~p"/"}>Back to products</.back>
     """
